@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_learn_java" default="compile.module.learn_java">
+  <dirname property="module.learn_java.basedir" file="${ant.file.module_learn_java}"/>
+  
+  <property name="module.jdk.home.learn_java" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.learn_java" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.learn_java" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.learn_java" value="${compiler.args}"/>
+  
+  <property name="learn_java.output.dir" value="${module.learn_java.basedir}/out/production/learn_java"/>
+  <property name="learn_java.testoutput.dir" value="${module.learn_java.basedir}/out/test/learn_java"/>
+  
+  <path id="learn_java.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="learn_java.module.production.classpath">
+    <path refid="${module.jdk.classpath.learn_java}"/>
+    <fileset dir="${basedir}/../common_lib">
+      <patternset refid="library.patterns"/>
+    </fileset>
+  </path>
+  
+  <path id="learn_java.runtime.production.module.classpath">
+    <pathelement location="${learn_java.output.dir}"/>
+    <fileset dir="${basedir}/../common_lib">
+      <patternset refid="library.patterns"/>
+    </fileset>
+  </path>
+  
+  <path id="learn_java.module.classpath">
+    <path refid="${module.jdk.classpath.learn_java}"/>
+    <pathelement location="${learn_java.output.dir}"/>
+    <fileset dir="${basedir}/../common_lib">
+      <patternset refid="library.patterns"/>
+    </fileset>
+  </path>
+  
+  <path id="learn_java.runtime.module.classpath">
+    <pathelement location="${learn_java.testoutput.dir}"/>
+    <pathelement location="${learn_java.output.dir}"/>
+    <fileset dir="${basedir}/../common_lib">
+      <patternset refid="library.patterns"/>
+    </fileset>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.learn_java">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.learn_java">
+    <patternset refid="excluded.from.module.learn_java"/>
+  </patternset>
+  
+  <path id="learn_java.module.sourcepath">
+    <dirset dir="${module.learn_java.basedir}">
+      <include name="src"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.learn_java" depends="compile.module.learn_java.production,compile.module.learn_java.tests" description="Compile module learn_java"/>
+  
+  <target name="compile.module.learn_java.production" depends="register.custom.compilers" description="Compile module learn_java; production classes">
+    <mkdir dir="${learn_java.output.dir}"/>
+    <javac2 destdir="${learn_java.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.learn_java}/javac">
+      <compilerarg line="${compiler.args.learn_java}"/>
+      <bootclasspath refid="learn_java.module.bootclasspath"/>
+      <classpath refid="learn_java.module.production.classpath"/>
+      <src refid="learn_java.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.learn_java"/>
+    </javac2>
+    
+    <copy todir="${learn_java.output.dir}">
+      <fileset dir="${module.learn_java.basedir}/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.learn_java.tests" depends="register.custom.compilers,compile.module.learn_java.production" description="compile module learn_java; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.learn_java" description="cleanup module">
+    <delete dir="${learn_java.output.dir}"/>
+    <delete dir="${learn_java.testoutput.dir}"/>
+  </target>
+</project>

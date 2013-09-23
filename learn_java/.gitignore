@@ -1,8 +1,6 @@
 *.class
 .gradle/
 reports/
-results/
-test-output/
 build/
 *.iml
 lib/
@@ -13,4 +11,3 @@ lib/
 out
 *.ipr
 *.hprof
-.git - Copy/

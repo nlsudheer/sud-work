@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Suite" verbose="1">
+    <parameter name="armStrongNumberMin" value="9"/>
+    <parameter name="armStrongNumberMax" value="999"/>
+    <parameter name="armStrongNumber" value="371"/>
+    <parameter name="fibonacciNumber" value="8"/>
+
+    <test name="ByPackage">
+        <packages>
+            <package name="learnjava.*"/>
+        </packages>
+    </test>
+</suite>

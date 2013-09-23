@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Suite" verbose="1">
+    <parameter name="armStrongNumberMin" value="9"/>
+    <parameter name="armStrongNumberMax" value="999"/>
+    <parameter name="armStrongNumber" value="371"/>
+    <parameter name="fibonacciNumber" value="8"/>
+
+    <test name="ByClass">
+        <classes>
+            <!--<class name="learnjava.PalindromeNumber"/>   &lt;!&ndash; runs all methods in the mentioned class&ndash;&gt;-->
+            <!--<class name="learnjava.PrimeNumbers"/>-->
+            <!--<class name="learnjava.ArmstrongNumber"/>-->
+            <class name="learnjava.TemplateForTestNG"/>
+
+        </classes>
+    </test>
+
+    <test name="ByClassAndMethods">
+        <classes>
+            <class name="learnjava.Fibonacci">   <!-- runs mentioned methods in the mentioned class-->
+                <methods>
+                    <include name="fib"/>
+                    <exclude name="fibUsingTwoVariable"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>

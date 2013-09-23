@@ -1,0 +1,23 @@
+ #####################################
+
+ #####################################
+
+ #####################################
+
+get TestNg help
+
+D:\sud-work\learn_java>java -cp ".\bin;..\common_lib\*;" org.testng.TestNG testngTest.xml --help
+
+#####################################
+running testng from command line
+
+Navigate to the testng.xml location and in the package folder
+java -cp "class file location; testng jar file location" org.testng.TestNG testng.xml
+
+java -cp ".\bin;..\common_lib\*;" org.testng.TestNG testng.xml
+
+
+example to run by classes
+
+D:\sud-work\learn_java> java -cp ".\bin;..\common_lib\*;" org.testng.TestNG testngRunByClass.xml
+#####################################
