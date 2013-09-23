@@ -1,0 +1,14 @@
+*.class
+.gradle/
+reports/
+results/
+build/
+*.iml
+lib/
+*.iws
+*.log
+*.iml
+.idea
+out
+*.ipr
+*.hprof
