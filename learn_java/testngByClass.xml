@@ -11,7 +11,8 @@
             <!--<class name="learnjava.PalindromeNumber"/>   &lt;!&ndash; runs all methods in the mentioned class&ndash;&gt;-->
             <!--<class name="learnjava.PrimeNumbers"/>-->
             <!--<class name="learnjava.ArmstrongNumber"/>-->
-            <class name="learnjava.TemplateForTestNG"/>
+            <!--<class name="learnjava.TemplateForTestNG"/>-->
+            <class name="learnjava.Sort"/>
 
         </classes>
     </test>

@@ -4,7 +4,6 @@ import org.testng.annotations.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.Random;
 
 /**
@@ -55,23 +54,46 @@ public class Sort {
 
     //Generate an integer array of length 7
     int[] input = generateRandomNumbers(7);
-    int[] anArray = {100, 200, 300, 400, 500, 600, 700, 800, 900, 1000};
+    int[] anArray = {100, 200, 300, 400, 500, 600, 700, -800, 900, 1000};
 
     @Test
     public void insertionSort() {
-        int lengthB4Sort = data.length;
-        System.out.println("Insertion sort array: " + Arrays.toString(data));
+        int[] a = data.clone();
+        int lengthB4Sort = a.length;
+        System.out.println("Insertion sort array: " + Arrays.toString(a));
         for (int i = 1; i < lengthB4Sort; i++) {
-            int temp = data[i]; // not using this for better understanding
+            int temp = a[i]; // not using this for better understanding
             int j;
-            for (j = i - 1; j >= 0 && data[i] < data[j]; j--) {
-                data[j + 1] = data[j];
+            for (j = i - 1; j >= 0 && a[i] < a[j]; j--) {
+                a[j + 1] = a[j];
             }
-            data[j + 1] = data[i];
+            a[j + 1] = a[i];
         }
-        System.out.println("Insertion sort array result: " + Arrays.toString(data));
+        System.out.println("Insertion sort array result: " + Arrays.toString(a));
 
-        int lengthAfterSort = data.length;
+        int lengthAfterSort = a.length;
+        System.out.println("Insertion sort array lengthB4Sort: " + lengthB4Sort);
+        System.out.println("Insertion sort array lengthAfterSort: " + lengthAfterSort);
+    }
+
+    @Test
+    public void insertionSortUseWhile() {
+        int[] a = data.clone();
+        int lengthB4Sort = a.length;
+        System.out.println("Insertion sort array: " + Arrays.toString(a));
+        for (int i = 1; i < lengthB4Sort; i++) {
+            int temp = a[i]; // not using this for better understanding
+            int j = i;
+            while ((j > 0) && (temp < a[j - 1])) {
+                a[j] = a[j - 1];
+                j--;
+            }
+            a[j] = temp;
+
+        }
+        System.out.println("Insertion sort array result: " + Arrays.toString(a));
+
+        int lengthAfterSort = a.length;
         System.out.println("Insertion sort array lengthB4Sort: " + lengthB4Sort);
         System.out.println("Insertion sort array lengthAfterSort: " + lengthAfterSort);
     }
