@@ -19,6 +19,7 @@
 
     <test name="ByClassAndMethods">
         <classes>
+            <!--<class name="testng.GetTestNgTestData"/>-->
             <class name="learnjava.Fibonacci">   <!-- runs mentioned methods in the mentioned class-->
                 <methods>
                     <include name="fib"/>

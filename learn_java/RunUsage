@@ -19,5 +19,5 @@ java -cp ".\bin;..\common_lib\*;" org.testng.TestNG testng.xml
 
 example to run by classes
 
-D:\sud-work\learn_java> java -cp ".\bin;..\common_lib\*;" org.testng.TestNG testngRunByClass.xml
+D:\sud-work\learn_java> java -cp ".\bin;..\common_lib\*;" org.testng.TestNG testngByClass.xml
 #####################################

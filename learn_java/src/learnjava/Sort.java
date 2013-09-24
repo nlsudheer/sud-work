@@ -1,7 +1,9 @@
 package learnjava;
 
+import org.testng.ITestContext;
 import org.testng.annotations.Test;
 
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
@@ -56,15 +58,15 @@ public class Sort {
     int[] input = generateRandomNumbers(7);
     int[] anArray = {100, 200, 300, 400, 500, 600, 700, -800, 900, 1000};
 
-    @Test
-    public void insertionSort() {
-        int[] a = data.clone();
+    @Test(groups="pending")
+    public  void insertionSort() {
+        int[] a = Arrays.copyOf(data, data.length); // using Arrays.copyOf method
         int lengthB4Sort = a.length;
         System.out.println("Insertion sort array: " + Arrays.toString(a));
         for (int i = 1; i < lengthB4Sort; i++) {
-            int temp = a[i]; // not using this for better understanding
+            int temp = a[i]; // not using this "temp" failing the sorting
             int j;
-            for (j = i - 1; j >= 0 && a[i] < a[j]; j--) {
+            for (j = i - 1; j >= 0 && (a[i] < a[j]); j--) {
                 a[j + 1] = a[j];
             }
             a[j + 1] = a[i];
@@ -74,6 +76,46 @@ public class Sort {
         int lengthAfterSort = a.length;
         System.out.println("Insertion sort array lengthB4Sort: " + lengthB4Sort);
         System.out.println("Insertion sort array lengthAfterSort: " + lengthAfterSort);
+    }
+
+    @Test
+    public void insertionSortAscending(Method method) {
+        String name = method.getName();
+        System.out.println("testName : " + name);
+
+        int[] a = Arrays.copyOf(data, data.length); // using Arrays.copyOf method
+        int lengthB4Sort = a.length;
+        System.out.println(name + " Insertion sort array: " + Arrays.toString(a));
+        for (int i = 1; i < lengthB4Sort; i++) {
+            int temp = a[i];
+            int j;
+            for (j = i - 1; j >= 0 && temp < a[j]; j--) {
+                a[j + 1] = a[j];
+            }
+            a[j + 1] = temp;
+        }
+        System.out.println(name + " Insertion sort array result: " + Arrays.toString(a));
+
+    }
+
+    @Test
+    public void insertionSortDescending(Method method) {
+        String name = method.getName();
+        System.out.println("testName : " + name);
+
+        int[] a = Arrays.copyOf(data, data.length); // using Arrays.copyOf method
+        int lengthB4Sort = a.length;
+        System.out.println(name + " Insertion sort array: " + Arrays.toString(a));
+        for (int i = 1; i < lengthB4Sort; i++) {
+            int temp = a[i];
+            int j;
+            for (j = i - 1; j >= 0 && temp > a[j]; j--) {
+                a[j + 1] = a[j];
+            }
+            a[j + 1] = temp;
+        }
+        System.out.println(name + " Insertion sort array result: " + Arrays.toString(a));
+
     }
 
     @Test
@@ -116,6 +158,12 @@ public class Sort {
 
         return result;
     }
+
+    @Test
+    public void f(ITestContext ctx) {
+        String name = ctx.getCurrentXmlTest().getName();
+        System.out.println("method name: " + name);
+}
 
 
 }
