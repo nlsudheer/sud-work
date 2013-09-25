@@ -41,7 +41,7 @@ import java.util.Random;
  * Time: 3:57 PM
  * To change this template use File | Settings | File Templates.
  */
-public class Sort {
+ public class InsertionSort {
     ArrayList<Integer> ar = new ArrayList<Integer>();
 
 //    ar.add(1);
@@ -120,7 +120,7 @@ public class Sort {
 
     @Test
     public void insertionSortUseWhile() {
-        int[] a = data.clone();
+        int[] a = data.clone();    // not a suggested to copy array
         int lengthB4Sort = a.length;
         System.out.println("Insertion sort array: " + Arrays.toString(a));
         for (int i = 1; i < lengthB4Sort; i++) {
@@ -167,3 +167,5 @@ public class Sort {
 
 
 }
+
+
