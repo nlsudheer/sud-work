@@ -1,5 +1,8 @@
 http://testng.org/doc/documentation-main.html#parameters
 
+ custom screen resolution when running any Selenium test
+ http://blog.testingbot.com/2013/03/15/screen-resolution-option-now-available-for-all-selenium-tests
+
 Listeners
 
 data provider

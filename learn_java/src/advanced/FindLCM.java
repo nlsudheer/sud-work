@@ -52,6 +52,11 @@ import org.testng.annotations.Test;
  */
 public class FindLCM {
 
+    public int getLCMFromGCD(int a, int b) {
+            // lcm(a,b) = a * b / gcd(a,b)
+        return (a * b) / (FindGCD.getGCD(a, b));
+    }
+
     public void getLCM(int a, int b) {
         int min, max, lcm;
         min = a < b ? a : b;
@@ -113,5 +118,6 @@ public class FindLCM {
         System.out.println("LCM of " + num1 + " and " + num2 + " is " + getLCMBasic(num1, num2));
         getLCM(num1, num2);
         getLCMForLoop(8,7);
+        System.out.println("LCM of " + num1 + " and " + num2 + " is " + getLCMFromGCD(num1, num2));
     }
 }
