@@ -1,5 +1,7 @@
 package learnjava;
 
+import org.testng.annotations.Test;
+
 import java.io.*;
 
 public class Compare {
@@ -9,6 +11,7 @@ public class Compare {
 	 */
 	
 	public static int k=0;
+    @Test(groups="sort", enabled = false)
 	public static void quick_sort(String array[],int low, int n){
 	    int lo = low;
 	    int hi = n;
