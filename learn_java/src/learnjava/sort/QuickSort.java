@@ -1,4 +1,4 @@
-package learnjava;
+package learnjava.sort;
 
 import org.testng.annotations.Test;
 
@@ -14,22 +14,24 @@ import java.util.Random;
  * Time: 3:57 PM
  * To change this template use File | Settings | File Templates.
  */
-@Test(groups = "pending")
+
+//    @Test(groups = "pending")
 public class QuickSort {
     int data[] = new int[]{3, 5, 7, 4, 3, 1, -19, 45, 25, 45, 0, -0};
     //Generate an integer array of length 7
     int[] input = generateRandomNumbers(7);
     int[] anArray = {100, 200, 300, 400, 500, 600, 700, -800, 900, 1000};
 
+//    @Test(groups = "pending")
     public void sort() {
         int[] a = Arrays.copyOf(data, data.length);
-        if (a ==null || a.length==0){
+        if (a == null || a.length == 0) {
             return;
         }
-        quickSort(a, 0, a.length-1);
+        quickSort(a, 0, a.length - 1);
     }
 
-    private void quickSort(int []a, int i, int j) {
+    private void quickSort(int[] a, int i, int j) {
 
         int pivot = a[i + (j - i) / 2];
 
@@ -41,16 +43,15 @@ public class QuickSort {
                 j--;
             }
 
-            if (i <j){
+            if (i < j) {
                 swap(a, i, j);
             }
-
         }
 
     }
 
 
-    private  void swap(int[] a, int i, int j) {
+    private void swap(int[] a, int i, int j) {
         int temp = a[i];
         a[i] = a[j];
         a[j] = temp;

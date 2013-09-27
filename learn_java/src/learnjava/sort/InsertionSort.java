@@ -1,4 +1,4 @@
-package learnjava;
+package learnjava.sort;
 
 import org.testng.ITestContext;
 import org.testng.annotations.Test;
