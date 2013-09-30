@@ -1,4 +1,4 @@
-package learnjava;
+package learnjava.matrix;
 
 import org.testng.annotations.Test;
 
