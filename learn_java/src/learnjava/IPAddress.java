@@ -5,6 +5,7 @@ import org.testng.annotations.Test;
 import java.net.InetAddress;
 
 /**
+ * http://www.programmingsimplified.com/java/source-code/java-program-ip-address
  * Created with IntelliJ IDEA.
  * User: sudheern
  * Date: 30/9/13

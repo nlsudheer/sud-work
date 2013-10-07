@@ -58,24 +58,26 @@ import java.util.Random;
     int[] input = generateRandomNumbers(7);
     int[] anArray = {100, 200, 300, 400, 500, 600, 700, -800, 900, 1000};
 
-    @Test(groups="pending")
-    public  void insertionSort() {
+    @Test(groups="done")
+    public  void insertionSortSimpleLogic() {
         int[] a = Arrays.copyOf(data, data.length); // using Arrays.copyOf method
         int lengthB4Sort = a.length;
         System.out.println("Insertion sort array: " + Arrays.toString(a));
         for (int i = 1; i < lengthB4Sort; i++) {
-            int temp = a[i]; // not using this "temp" failing the sorting
             int j;
-            for (j = i - 1; j >= 0 && (a[i] < a[j]); j--) {
-                a[j + 1] = a[j];
+            for (j = i - 1; j >= 0; j--) {
+                if(a[j] > a[j+1]){ //for > ascending, for < decending
+                    int tempInt = a[j];
+                    a[j] = a[j+1];
+                    a[j+1] = tempInt;
+                }
             }
-            a[j + 1] = a[i];
         }
         System.out.println("Insertion sort array result: " + Arrays.toString(a));
 
         int lengthAfterSort = a.length;
-        System.out.println("Insertion sort array lengthB4Sort: " + lengthB4Sort);
-        System.out.println("Insertion sort array lengthAfterSort: " + lengthAfterSort);
+//        System.out.println("Insertion sort array lengthB4Sort: " + lengthB4Sort);
+//        System.out.println("Insertion sort array lengthAfterSort: " + lengthAfterSort);
     }
 
     @Test
@@ -98,7 +100,7 @@ import java.util.Random;
 
     }
 
-    @Test
+//    @Test
     public void insertionSortDescending(Method method) {
         String name = method.getName();
         System.out.println("testName : " + name);
@@ -118,7 +120,7 @@ import java.util.Random;
 
     }
 
-    @Test
+//    @Test
     public void insertionSortUseWhile() {
         int[] a = data.clone();    // not a suggested to copy array
         int lengthB4Sort = a.length;
