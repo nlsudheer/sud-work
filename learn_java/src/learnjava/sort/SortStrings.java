@@ -15,10 +15,9 @@ import java.util.Arrays;
 public class SortStrings {
     @Test
     // http://stackoverflow.com/questions/605891/sort-a-single-string-in-java
-    public void sortStringWithOutLibrary() {
+    public void sortStringWithOutLibraryOne() {
 
         String wordSt = "watch";
-
         char word[] = wordSt.toCharArray();
         // or
 //        String word[] = wordSt.split("");
@@ -35,8 +34,26 @@ public class SortStrings {
             }
 
         }
-        wordSt=String.valueOf(word);
+        wordSt = String.valueOf(word);
         System.out.println("sortStringWithOutLibrary: " + wordSt);
+    }
+
+    @Test
+    public void sortStringWithOutLibraryTwo() {
+        String wordSt = "aAwatchzZ";
+        char[] word = wordSt.toCharArray();
+
+        for (int i = 0; i < (word.length - 1); i++) {
+            for (int j = i + 1; j > 0; j--) {
+                if (word[j] > word[j - 1]) {
+                    char temp = word[j - 1];
+                    word[j - 1] = word[j];
+                    word[j] = temp;
+                }
+            }
+        }
+        wordSt = String.valueOf(word);
+        System.out.println("sortStringWithOutLibraryTwo: "+wordSt);
     }
 
     @Test
