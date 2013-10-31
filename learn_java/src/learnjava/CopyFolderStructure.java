@@ -10,8 +10,6 @@ public class CopyFolderStructure {
 		File fSource = new File(sSourcePath);
 		File fDestination = new File(sDestinationPath);
 
-	
-
 		if(!fDestination.exists()) {
 
 			destFolderCreationResult = fDestination.mkdirs();

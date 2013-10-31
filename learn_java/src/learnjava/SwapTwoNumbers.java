@@ -1,5 +1,7 @@
 package learnjava;
 
+import org.testng.annotations.Test;
+
 /**
  * 5) Program of swapping two numbers without using third variable.
  * http://www.javatpoint.com/operators-in-java
@@ -22,8 +24,13 @@ public class SwapTwoNumbers {
 
     }
 
+    @Test
+    public void swapByDivison() {
+        swapByDivison(9.9,10);
+    }
 
-    public static void main(String args[]){
+    @Test
+    public void swapTwoVariables(){
         int a = 10;
         int b = 12;
         System.out.println(a +" "+ b + " " + "numbers before swap");
@@ -32,8 +39,7 @@ public class SwapTwoNumbers {
         a = a - b;
         System.out.println(a +" "+ b + " " + "numbers after swap");
 
-        SwapTwoNumbers swap = new SwapTwoNumbers();
-        swap.swapByDivison(9.9, 10);
+
     }
 
 }

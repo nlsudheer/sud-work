@@ -18,7 +18,7 @@ public class RemoveCharFromString {
 		}
 
 		StringBuilder strBuilder = new StringBuilder();
-http://marketplace.eclipse.org/marketplace-client-intro?mpc_install=321859
+//http://marketplace.eclipse.org/marketplace-client-intro?mpc_install=321859
 		for (int i = 0; i < str.length(); i++) {
 			char ch = str.charAt(i);
 			if (ch == c) {

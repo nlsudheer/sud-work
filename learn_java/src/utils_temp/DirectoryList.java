@@ -6,7 +6,7 @@ import java.util.*;
 public class DirectoryList {
 
 	/**
-	 * @param args
+//	 * @param args
 	 */
 	
 	static void scanDir(File dir)
