@@ -9,23 +9,28 @@
     <test name="ByClass">
         <classes>
             <!--<class name="learnjava.PalindromeNumber"/>   &lt;!&ndash; runs all methods in the mentioned class&ndash;&gt;-->
-            <!--<class name="learnjava.PrimeNumbers"/>-->
+            <class name="learnjava.Duplicates"/>
+            <!--<class name="learnjava.SwapTwoNumbers"/>-->
+
             <!--<class name="learnjava.ArmstrongNumber"/>-->
             <!--<class name="learnjava.TemplateForTestNG"/>-->
-            <class name="learnjava.Sort"/>
+            <!--<class name="learnjava.sort.InsertionSort"/>-->
+            <!--<class name="learnjava.matrix.MatrixMultiplication"/>-->
+            <!--<class name="advanced.FindGCD"/>-->
+            <!--<class name="advanced.FindLCM"/>-->
 
         </classes>
     </test>
 
-    <test name="ByClassAndMethods">
-        <classes>
-            <!--<class name="testng.GetTestNgTestData"/>-->
-            <class name="learnjava.Fibonacci">   <!-- runs mentioned methods in the mentioned class-->
-                <methods>
-                    <include name="fib"/>
-                    <exclude name="fibUsingTwoVariable"/>
-                </methods>
-            </class>
-        </classes>
-    </test>
+    <!--<test name="ByClassAndMethods">-->
+        <!--<classes>-->
+            <!--&lt;!&ndash;<class name="testng.GetTestNgTestData"/>&ndash;&gt;-->
+            <!--<class name="learnjava.Fibonacci">   &lt;!&ndash; runs mentioned methods in the mentioned class&ndash;&gt;-->
+                <!--<methods>-->
+                    <!--<include name="fib"/>-->
+                    <!--<exclude name="fibUsingTwoVariable"/>-->
+                <!--</methods>-->
+            <!--</class>-->
+        <!--</classes>-->
+    <!--</test>-->
 </suite>

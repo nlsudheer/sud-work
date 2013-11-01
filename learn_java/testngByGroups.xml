@@ -13,6 +13,7 @@
                 <include name="pending"/>
                 <include name="done"/>
                 <exclude name="run"/>
+                <exclude name="sort"/>
             </run>
         </groups>
 
