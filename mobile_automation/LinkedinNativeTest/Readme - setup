@@ -1,0 +1,43 @@
+1. Download Linkedin apk file
+2. Re-sigh it using the re-sign jar file which is in the libs folder
+3. Load the apk file into the device or Emulator
+4. Update the source code with class and target
+
+refer docs in the lib folder and at 
+https://code.google.com/p/robotium/wiki/Getting_Started
+
+
+Ex commands to setup
+cd mobile_automation\android\android_sdk\platform-tools
+
+adb devices
+
+adb shell input keyevent 82
+
+adb -s emulator-5554  -e install -r android-server-2.21.0.apk
+
+adb -s emulator-5554  -e install -r FBAndroid-3.6.1_debug.apk
+
+adb -s emulator-5554 shell am start -a android.intent.action.MAIN -n org.openqa.selenium.android.app/.MainActivity -e debug true
+
+adb -s emulator-5554 shell am start -a android.intent.action.MAIN -n com.facebook.katana/.FacebookLoginActivity -e debug true
+
+adb -s emulator-5554 forward tcp:8080 tcp:8080
+
+http://localhost:5037/wd/hub
+
+http://localhost:8080/exit
+
+http://localhost:8080/manage
+
+adb kill-server
+
+adb start-server
+
+####################################
+Emulator command line 
+
+from sdk/ tools $ >emulator -avd name
+
+ex: 
+emulator -avd nexusmore
