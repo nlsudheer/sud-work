@@ -6,7 +6,9 @@ import com.example.android.facebook.base.BaseTest;
 import com.example.android.facebook.helpers.FacebookHelpers;
 import com.example.android.facebook.pages.LoginPage;
 import com.example.android.facebook.test.data.LoginData;
+import com.jayway.android.robotium.solo.Solo;
 
+import android.test.suitebuilder.annotation.MediumTest;
 import android.test.suitebuilder.annotation.SmallTest;
 
 @SuppressWarnings("rawtypes")
@@ -57,10 +59,11 @@ public class NativeAppLoginTest extends BaseTest{
 	}
 	
 	/**
-	 * A test that verifies error message for blank login and blank password
+	 * A test that enables rotation and verifies error message for blank login and blank password
 	 */
-	@SmallTest
+	@MediumTest
 	public void testLoginWithBlankLogins() {
+		solo.setActivityOrientation(Solo.LANDSCAPE);
 		helper.loginFacebook(LoginData.BLANK_EMAIL, LoginData.BLANK_PASSWORD, LoginData.BLANK_LOGINS);
 		assertTrue("Expected Error message  " + LoginData.BLANK_LOGINS + "not shown for blank email and password", 
 				solo.searchText(LoginPage.SIGNUP_TEXT, LoginData.TRUE));
