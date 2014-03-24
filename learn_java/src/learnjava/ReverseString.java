@@ -1,6 +1,22 @@
 package learnjava;
 
+/*
+ * http://www.careercup.com/question?id=5358150211338240
+ * 
+ * if(str == null){
+ return;
+}
+i =0;
+j = str.length() -1;
+while(i< j){
+     swap(str.charAt(i), str.charAt(j));
+      i++;
+      j--;
+}
+ */
+
 import org.testng.annotations.Test;
+
 
 import java.util.Scanner;
 
