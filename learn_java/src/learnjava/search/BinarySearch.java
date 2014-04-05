@@ -72,5 +72,56 @@ public class BinarySearch {
         System.out.println("position of value in the given array : " + searchValueJavaSourceCode(a, 17));
 
     }
+    
+    /**
+     * http://algs4.cs.princeton.edu/11model/BinarySearch.java.html
+     * 
+     * Searches for the integer key in the sorted array a[].
+     * @param key the search key
+     * @param a the array of integers, must be sorted in ascending order
+     * @return index of key in array a[] if present; -1 if not present
+     */
+    // pending
+    
+    public static int rank(int key, int[] a) {
+        int lo = 0;
+        int hi = a.length - 1;
+        while (lo <= hi) {
+            // Key is in a[lo..hi] or not present.
+            int mid = lo + (hi - lo) / 2;
+            if      (key < a[mid]) hi = mid - 1;
+            else if (key > a[mid]) lo = mid + 1;
+            else return mid;
+        }
+        return -1;
+    }
+   
+/**
+ * http://www.vogella.com/tutorials/JavaAlgorithmsSearch/article.html
+ * @param a
+ * @param b
+ * @return
+ */
+    // http://www.vogella.com/tutorials/JavaAlgorithmsSearch/article.html
+    // pending 
+    // best one
+    public static boolean contains(int[] a, int b) {
+       if (a.length == 0) {
+         return false;
+       }
+       int low = 0;
+       int high = a.length-1;
 
+       while(low <= high) {
+         int middle = (low+high) /2;  // another best way is low + (high-low)/2
+         if (b> a[middle]){
+           low = middle +1;
+         } else if (b< a[middle]){
+           high = middle -1;
+         } else { // The element has been found
+           return true; 
+         }
+       }
+       return false;
+     }
 }
