@@ -1,4 +1,4 @@
-package advanced;
+package learnjava.arrays;
 
 /*
  * http://www.careercup.com/question?id=13870747

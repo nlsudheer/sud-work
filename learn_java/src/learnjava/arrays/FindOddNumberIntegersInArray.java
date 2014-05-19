@@ -13,8 +13,12 @@ public class FindOddNumberIntegersInArray {
 2) Use Set - add elements to the Set. If the set already contains given element then remove from the set. At the end set will contain only not duplicated element; time O(n), space O(n) 
 3) Sort array and use running counter to find not duplicated element; time O(nlogn), space O(1)
     */
+   
+   public static void main(String []args){
+      String s = null;
+//      s.s
    int val=0;
-   int a[] = {1,1,3,1,3,3}; //
+   int a[] = {1,1,3,1,3,3}; // {1,1,3,1,3,3} --> ans is 2
     val = a[0] ^ a[1];
    for(int i=1; i< a.length-1; i++){
 //      System.out.println("a value: "+i);
@@ -23,5 +27,5 @@ public class FindOddNumberIntegersInArray {
       
    }
    System.out.println(val);
-
+   }
 }

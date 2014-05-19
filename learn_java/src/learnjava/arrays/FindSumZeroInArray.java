@@ -2,6 +2,9 @@ package learnjava.arrays;
 
 /**
  * http://www.careercup.com/question?id=4691284505657344
+ * use brute force algorithm
+ * brute-force search or exhaustive search, 
+ * http://www.careercup.com/question?id=9307474
  * @author sudheerl
  * you have an array which has a set of positive and negative numbers, print all the subset sum which is equal to 0. 
 
