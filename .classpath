@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="learn_java/src"/>
+	<classpathentry kind="src" path="mobile_automation/FacebookNativeAppTest/gen"/>
+	<classpathentry kind="src" path="mobile_automation/FacebookNativeAppTest/src"/>
+	<classpathentry kind="src" path="mobile_automation/LinkedinNativeTest/gen"/>
+	<classpathentry kind="src" path="mobile_automation/LinkedinNativeTest/src"/>
+	<classpathentry kind="src" path="selenium/src"/>
+	<classpathentry kind="lib" path="common_lib/commons-csv.jar"/>
+	<classpathentry kind="lib" path="common_lib/commons-lang3-3.1.jar"/>
+	<classpathentry kind="lib" path="common_lib/gson-1.1.jar"/>
+	<classpathentry kind="lib" path="common_lib/htmlunit-1.5.jar"/>
+	<classpathentry kind="lib" path="common_lib/jsoup-1.7.2.jar"/>
+	<classpathentry kind="lib" path="common_lib/jxl-2.6.jar"/>
+	<classpathentry kind="lib" path="common_lib/mail-1.4.6.jar"/>
+	<classpathentry kind="lib" path="common_lib/opencsv-2.3.jar"/>
+	<classpathentry kind="lib" path="common_lib/robotframework-2.7.7.jar"/>
+	<classpathentry kind="lib" path="common_lib/selenium-server-standalone-2.32.0.jar"/>
+	<classpathentry kind="lib" path="common_lib/testng-6.8.5.jar"/>
+	<classpathentry kind="lib" path="common_lib/testng-6.8.jar"/>
+	<classpathentry kind="lib" path="common_lib/uol_common-trunk.jar"/>
+	<classpathentry kind="lib" path="mobile_automation/FacebookNativeAppTest/facebook_sdk.jar"/>
+	<classpathentry kind="lib" path="mobile_automation/FacebookNativeAppTest/libs/robotium-solo-4.3.1-javadoc.jar"/>
+	<classpathentry kind="lib" path="mobile_automation/FacebookNativeAppTest/libs/robotium-solo-4.3.1.jar"/>
+	<classpathentry kind="lib" path="mobile_automation/LinkedinNativeTest/libs/re-sign.jar"/>
+	<classpathentry kind="lib" path="mobile_automation/LinkedinNativeTest/libs/robotium-solo-4.3.1.jar"/>
+	<classpathentry kind="lib" path="selenium/lib/opencsv-2.3.jar"/>
+	<classpathentry kind="lib" path="selenium/lib/robotframework-2.7.7.jar"/>
+	<classpathentry kind="lib" path="selenium/lib/selenium-server-standalone-2.25.0.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

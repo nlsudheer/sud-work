@@ -21,3 +21,11 @@ example to run by classes
 
 D:\sud-work\learn_java> java -cp ".\bin;..\common_lib\*;" org.testng.TestNG testngByClass.xml
 #####################################
+running testng from InteliiJi IDE
+
+right click on testng.xml file and do RUN
+
+or
+go to Run Configurations, then in configuration tab provide the testng.xml path
+
+#####################################
