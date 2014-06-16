@@ -1,14 +1,14 @@
+.DS_Store
+.settings
 *.class
 .gradle/
 reports/
 results/
 test-output/
 build/
-*.iml
 lib/
 *.iws
 *.log
-*.iml
 .idea
 out
 *.ipr

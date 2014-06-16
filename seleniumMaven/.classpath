@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry including="**/*.java" kind="src" output="target/test-classes" path="src/test/java"/>
+	<classpathentry excluding="**/*.java" kind="src" output="target/test-classes" path="src/test/resources"/>
+	<classpathentry including="**/*.java" kind="src" path="src/main/java"/>
+	<classpathentry excluding="**/*.java" kind="src" path="src/main/resources"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="var" path="M2_REPO/org/testng/testng/6.8.5/testng-6.8.5.jar"/>
+	<classpathentry exported="true" kind="var" path="M2_REPO/junit/junit/4.10/junit-4.10.jar"/>
+	<classpathentry exported="true" kind="var" path="M2_REPO/org/hamcrest/hamcrest-core/1.1/hamcrest-core-1.1.jar"/>
+	<classpathentry exported="true" kind="var" path="M2_REPO/org/beanshell/bsh/2.0b4/bsh-2.0b4.jar"/>
+	<classpathentry exported="true" kind="var" path="M2_REPO/com/beust/jcommander/1.27/jcommander-1.27.jar"/>
+	<classpathentry exported="true" kind="var" path="M2_REPO/org/yaml/snakeyaml/1.6/snakeyaml-1.6.jar"/>
+	<classpathentry kind="lib" path="/Users/sudheerl/Google Drive/workspace/sud-work/common_lib/testng-6.8.5.jar"/>
+	<classpathentry kind="lib" path="/Users/sudheerl/Google Drive/workspace/sud-work/common_lib/htmlunit-1.5.jar"/>
+	<classpathentry kind="lib" path="/Users/sudheerl/Google Drive/workspace/sud-work/common_lib/jxl-2.6.jar"/>
+	<classpathentry kind="lib" path="/Users/sudheerl/Google Drive/workspace/sud-work/common_lib/commons-csv.jar"/>
+	<classpathentry kind="lib" path="/Users/sudheerl/Google Drive/workspace/sud-work/common_lib/log4j-1.2.16.jar"/>
+	<classpathentry kind="lib" path="/Users/sudheerl/Google Drive/workspace/sud-work/common_lib/mail-1.4.6.jar"/>
+	<classpathentry kind="lib" path="/Users/sudheerl/Google Drive/workspace/sud-work/common_lib/selenium-server-standalone-2.41.0.jar"/>
+	<classpathentry kind="lib" path="/Users/sudheerl/Google Drive/workspace/sud-work/common_lib/gson-1.1.jar"/>
+	<classpathentry kind="lib" path="/Users/sudheerl/Google Drive/workspace/sud-work/common_lib/opencsv-2.3.jar"/>
+	<classpathentry kind="lib" path="/Users/sudheerl/Google Drive/workspace/sud-work/common_lib/commons-lang3-3.3.2.jar"/>
+	<classpathentry kind="lib" path="/Users/sudheerl/Google Drive/workspace/sud-work/common_lib/jsoup-1.7.2.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Maven: org.testng:testng:6.8.5"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Maven: junit:junit:4.10"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Maven: org.hamcrest:hamcrest-core:1.1"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Maven: org.beanshell:bsh:2.0b4"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Maven: com.beust:jcommander:1.27"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Maven: org.yaml:snakeyaml:1.6"/>
+	<classpathentry kind="lib" path="/Users/sudheerl/Google Drive/workspace/sud-work/common_lib/poi/poi-3.9-20121203.jar"/>
+	<classpathentry kind="lib" path="/Users/sudheerl/Google Drive/workspace/sud-work/common_lib/poi/poi-ooxml-3.9-20121203.jar"/>
+	<classpathentry kind="lib" path="/Users/sudheerl/Google Drive/workspace/sud-work/common_lib/poi/poi-scratchpad-3.9-20121203.jar"/>
+	<classpathentry kind="lib" path="/Users/sudheerl/Google Drive/workspace/sud-work/common_lib/poi/poi-examples-3.9-20121203.jar"/>
+	<classpathentry kind="lib" path="/Users/sudheerl/Google Drive/workspace/sud-work/common_lib/poi/poi-ooxml-schemas-3.9-20121203.jar"/>
+	<classpathentry kind="lib" path="/Users/sudheerl/Google Drive/workspace/sud-work/common_lib/poi/poi-excelant-3.9-20121203.jar"/>
+	<classpathentry kind="lib" path="/Users/sudheerl/Google Drive/workspace/sud-work/common_lib/jxl-2.6.12.jar"/>
+	<classpathentry kind="output" path="target/classes"/>
+</classpath>
