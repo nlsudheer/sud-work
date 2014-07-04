@@ -1,8 +1,11 @@
 package org.selenium.framework.baseModules;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.log4j.Logger;
 import org.openqa.selenium.*;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
@@ -14,20 +17,67 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
-public class Browser extends BaseLib {
+public class Browser {
     TestUtils util = new TestUtils();
+    Properties prop = BaseLib.getProperties();
+    public static Logger log = Logger.getLogger(Browser.class);
+    public WebDriver driver = null;
 
-    public  WebDriver getDriver(String browserType) {
-        WebDriver driver = new FirefoxDriver();
+
+    public String getConfig(String key){
+        return prop.getProperty(key);
+    }
+
+    public Browser(){
+        getDriver();
+    }
+
+    public Browser(String browser){
+        setDriver(browser);
+    }
+
+
+
+    public WebDriver getDriver(){
+        return driver;
+    }
+
+    public  WebDriver setDriver(String browserType) {
+        switch(browserType){
+            case "firefox" :
+                this.driver = new FirefoxDriver();
+                break;
+            case "chrome" :
+                // download chromedriver and set the system property path
+
+//                DesiredCapabilities capability = DesiredCapabilities.chrome();
+//                try {
+//                    driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), capability);
+//                } catch (MalformedURLException e) {
+//                    e.printStackTrace();
+//                }
+                System.setProperty("webdriver.chrome.driver","/Applications/chromedriver");
+                driver = new ChromeDriver();
+                break;
+            case "iexplorer" :
+                driver = new InternetExplorerDriver();
+                break;
+            case "default" :
+                driver = new FirefoxDriver();
+                break;
+        }
+
 //      Implicit Waits
         driver.manage().timeouts().implicitlyWait(Long.parseLong(getConfig("browser_timeout")), TimeUnit.SECONDS);
         return driver;
     }
 
-    public final WebDriver driver = getDriver("ff");
-
+    public void setImplicitWait(int timeout) {
+        driver.manage().timeouts().implicitlyWait(timeout, TimeUnit.SECONDS);
+    }
 
 
     public void maximize() {
@@ -38,6 +88,15 @@ public class Browser extends BaseLib {
     public List<String> getAllLinks() {
         List<String> hrefs = new ArrayList<String>();
         List<WebElement> elements = driver.findElements(By.tagName("a"));
+        for(WebElement element: elements){
+            hrefs.add(element.getAttribute("href"));
+        }
+        return hrefs;
+    }
+
+    public List<String> getLinksByLocator(By locator) {
+        List<String> hrefs = new ArrayList<String>();
+        List<WebElement> elements = driver.findElements(locator);
         for(WebElement element: elements){
             hrefs.add(element.getAttribute("href"));
         }
@@ -63,7 +122,10 @@ public class Browser extends BaseLib {
     public String getText(By locator, boolean waitForElement) {
         if (waitForElement){waitForElement(locator);}
         return driver.findElement(locator).getText();
+    }
 
+    public boolean pageReadyState(){
+        return ((JavascriptExecutor)driver).executeScript("return document.readyState();").equals("complete");
     }
 
     // Pending imple
@@ -83,26 +145,25 @@ public class Browser extends BaseLib {
         maximize();
         driver.get(url);
         JavascriptExecutor jsx = (JavascriptExecutor) driver;
-        jsx.executeScript("window.focus();");
+        jsx.executeScript("return window.focus();");
     }
 
     public void openInNewWindow(String url) {
         JavascriptExecutor jsx = (JavascriptExecutor) driver;
-        jsx.executeScript("window.open();");
-        jsx.executeScript("window.focus();");
+        jsx.executeScript("return window.open();");
+        jsx.executeScript("return window.focus();");
         driver.get(url);
         maximize();
     }
 
     public void windowHandler(String url) {
-
         String currentWindowHandle = driver.getWindowHandle();
 
     }
 
     public void focus(){
         JavascriptExecutor jsx = (JavascriptExecutor) driver;
-        jsx.executeScript("window.focus();");
+        jsx.executeScript("return window.focus();");
     }
 
     public void click(By locator) {
@@ -151,7 +212,6 @@ public class Browser extends BaseLib {
         // Pending the imple for otherthan xpath
     }
 
-    @Deprecated
 //    public boolean isElementPresent(String element) {
 //        return isElementPresent(By.xpath(element));
 //    }
@@ -187,8 +247,8 @@ public class Browser extends BaseLib {
 
     public void mouseHover(By locator){
         System.out.println("In" + "\t" +  Thread.currentThread().getStackTrace()[1].getMethodName());
-		Actions builder = new Actions(driver);
-		builder.moveToElement(driver.findElement(locator)).perform();
+        Actions builder = new Actions(driver);
+        builder.moveToElement(driver.findElement(locator)).perform();
         System.out.println("Called " + "\t" +  Thread.currentThread().getStackTrace()[1].getMethodName());
     }
 
@@ -210,7 +270,7 @@ public class Browser extends BaseLib {
      * @param
      */
     public void captureScreenshot(String screenshotName) {
-        String location = getBaseDir() + getConfig("screenshots") + screenshotName + ".png";
+        String location = getConfig("basedir") + getConfig("screenshots") + screenshotName + ".png";
         File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
         // Now you can do whatever you need to do with it, for example copy somewhere
         try {

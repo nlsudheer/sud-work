@@ -8,6 +8,7 @@ import org.apache.commons.lang3.RandomStringUtils;
  */
 public class TestUtils extends BaseLib {
 
+
     // http://stackoverflow.com/questions/41107/how-to-generate-a-random-alpha-numeric-string
     public String randomStringGenerator(){
         return RandomStringUtils.randomAlphanumeric(Integer.parseInt(getConfig("RandomStringCount")));
