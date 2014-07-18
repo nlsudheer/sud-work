@@ -1,0 +1,91 @@
+<project name="SeleniumFramework" default="test" basedir=".">
+    <!-- Define <testng> task -->
+    <taskdef name="testng" classname="org.testng.TestNGAntTask">
+        <classpath>
+            <pathelement location="../common_lib/testng-6.8.5.jar"/>
+        </classpath>
+    </taskdef>
+
+    <property name="testdir" location="src/test/" />
+    <property name="build" location="target/" />
+    <property name="srcdir" location="src/main/java/**" />
+    <property name="libdir" location="../common_lib/" />
+    <property name="full-compile" value="true" />
+
+    <path id="classpath.src"/>
+    <path id="classpath.base"/>
+    <path id="classpath.test">
+        <fileset dir="${libdir}">
+            <include name="**/*.jar" />
+        </fileset>
+        <pathelement location="${testdir}" />
+        <pathelement location="${srcdir}" />
+        <path refid="classpath.base" />
+    </path>
+
+    <!-- /**Environment and test information **/ -->
+
+    <target name="info">
+        <echo message="Java Version : ${ant.java.version}" />
+        <echo message="Ant Version : ${ant.version}" />
+        <echo message="Project Name : ${ant.project.name}" />
+        <echo message="User Name : ${user.name}" />
+        <echo message="Project Location : ${user.dir}" />
+    </target>
+
+    <!-- /** Clean build dir **/ -->
+    <target name="clean" description="Delets maven test dir ">
+        <delete verbose="${full-compile}">
+            <fileset dir="${testdir}" includes="**/*.class" />
+        </delete>
+    </target>
+
+    <target name="clean-run-reports" description="Delete the logs, reports, screenshots, zip and classes folders" depends="info">
+        <delete dir="${build}" />
+    </target>
+
+    <target name="compile" depends="clean">
+        <javac srcdir="${srcdir}" destdir="${build}"
+               verbose="${full-compile}">
+            <classpath refid="classpath.test"/>
+        </javac>
+    </target>
+
+    <target name="test" depends="compile">
+        <testng outputdir="${build}" classpathref="classpath.test">
+            <xmlfileset dir="${srcdir}" includes="testng.xml"/>
+        </testng>
+    </target>
+
+    <!-- /** Zip all the reports under the ${reports} directory -->
+
+    <target name="zipReport" depends="junit-report, xslt-report">
+        <zip destfile="${reports}/zip/testReport.zip" duplicate="preserve">
+            <zipfileset dir="${reports}" />
+        </zip>
+    </target>
+
+    <!-- /** Send an email by zipping all the reports as an attachment -->
+    <target name="send-email">
+        <!--TODO: depends="zipReport"-->
+        <mail encoding="mime" enableSSL="true" mailhost="smtp.gmail.com" mailport="25" subject="Automation Test Report" ssl="true" user="automation.pramati@gmail.com" password="pramati123">
+
+            <from address="automation.pramati@gmail.com" />
+            <to address="sudheer@castlighthealth.com" />
+            <message>
+                Hello,
+
+                Please find the attachment for the report.
+
+                Thank you,
+                Automation Team
+            </message>
+            <attachments>
+                <fileset dir="${reports}/zip/" />
+            </attachments>
+        </mail>
+
+
+    </target>
+
+</project>

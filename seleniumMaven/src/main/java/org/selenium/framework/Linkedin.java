@@ -22,7 +22,6 @@ public class Linkedin extends BaseTest {
     public LinkedinElementsPage element = new LinkedinElementsPage();
 
 
-
     @Test(enabled = false)
     @Parameters("skip")
 	public void linkedinContacts(boolean skip) throws InterruptedException {

@@ -20,6 +20,11 @@ public class CastLightPage extends BasePage {
     public By change_location_typebox = By.cssSelector("input.location_field.ui-autocomplete-input");
     public By change_location_update = By.id("address_submit");
     public By zip_code = By.id("address_text");
+    public By provider_search_results = By.cssSelector("ul#provider_search_results>li a.provider_link");
+    public By provider_search_first_results = By.cssSelector("ul#provider_search_results>li:nth-of-type(1) a.provider_link");
+    public By welcome_dailog_after_login = By.cssSelector("div.pull-right>button.secondary");
+    public By accept_terms_after_login = By.name("commit");
+
 
 
 
