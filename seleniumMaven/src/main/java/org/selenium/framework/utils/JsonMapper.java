@@ -28,7 +28,6 @@ public class JsonMapper {
     }
 
 
-
     public static void main(String[] args) throws IOException {
 //        String file = "/Users/sudheerl/Desktop/sample_json.json";
 //        String file = "/Users/sudheerl/Pramati/cast_light/Projects/Ventana/testing/dev/accountService/account_test_for_dental_and_medical_plan_with_out_policy_data.json";
