@@ -1,6 +1,32 @@
-target/
-.DS_Store
+target
+work
+
+# IntelliJ project files 
+*.iml
+*.iws
+*.ipr
+.idea
+*.emi
+*.imi
+out
+logs
+
+
+# eclipse project file
 .settings
+.classpath
+.project
+build
+
+# vim
+*~
+
+
+!*.zip
+
+
+#old ones
+.DS_Store
 *.class
 .gradle/
 reports/
@@ -8,10 +34,10 @@ results/
 test-output/
 build/
 lib/
-*.iws
 *.log
 .idea
-out
+out/
+logs/
 *.ipr
 *.hprof
 .git - Copy/

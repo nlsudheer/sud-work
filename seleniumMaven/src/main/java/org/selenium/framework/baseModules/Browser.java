@@ -72,6 +72,7 @@ public class Browser {
 
 //      Implicit Waits
         driver.manage().timeouts().implicitlyWait(Long.parseLong(getConfig("browser_timeout")), TimeUnit.SECONDS);
+        log.debug("Invoking driver: " + driver.toString());
         return driver;
     }
 
@@ -179,7 +180,7 @@ public class Browser {
             WebDriverWait wait = new WebDriverWait(driver, Long.parseLong(getConfig("wait_timeout")), 10);
             wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
         }
-        System.out.println("Called " + "\t" +  Thread.currentThread().getStackTrace()[1].getMethodName());
+        log.debug("Called " + "\t" +  Thread.currentThread().getStackTrace()[1].getMethodName());
     }
 
     public void waitTillElementPresent(By locator) {
@@ -187,13 +188,13 @@ public class Browser {
             WebDriverWait wait = new WebDriverWait(driver, Long.parseLong(getConfig("wait_timeout")), 10);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(locator));
         }
-        System.out.println("Called " + "\t" +  Thread.currentThread().getStackTrace()[1].getMethodName());
+        log.debug("Called " + "\t" +  Thread.currentThread().getStackTrace()[1].getMethodName());
     }
 
     public void clickAndWait(By locator) {
         driver.findElement(locator).click();
         waitForElement(locator);
-        System.out.println("Called " + "\t" +  Thread.currentThread().getStackTrace()[1].getMethodName());
+        log.debug("Called " + "\t" +  Thread.currentThread().getStackTrace()[1].getMethodName());
     }
 
     public void type(By locator, String text) {
@@ -222,12 +223,12 @@ public class Browser {
             // "elm found in foundElement ");
             try {
                 if (driver.findElement(By.xpath(elm)).isDisplayed()) {
-                    System.out.println("elm found in foundElement " + elm);
+                    log.debug("elm found in foundElement " + elm);
                     return elm;
                 }
             } catch (Exception e) {
 
-                System.out.println("elm not found in foundElement " + elm);
+                log.debug("elm not found in foundElement " + elm);
                 continue;
             }
         }
@@ -235,31 +236,31 @@ public class Browser {
     }
 
     public boolean isElementPresent(By locator) {
-        System.out.println("In isElementPresent");
+        log.debug("In isElementPresent");
         try {
             return driver.findElement((locator)).isDisplayed();
 
         } catch (NoSuchElementException e) {
-            System.out.println("Page element not found "+ locator + "\n"+ e );
+            log.debug("Page element not found "+ locator + "\n"+ e );
             return false;
         }
     }
 
     public void mouseHover(By locator){
-        System.out.println("In" + "\t" +  Thread.currentThread().getStackTrace()[1].getMethodName());
+        log.debug("In" + "\t" +  Thread.currentThread().getStackTrace()[1].getMethodName());
         Actions builder = new Actions(driver);
         builder.moveToElement(driver.findElement(locator)).perform();
-        System.out.println("Called " + "\t" +  Thread.currentThread().getStackTrace()[1].getMethodName());
+        log.debug("Called " + "\t" +  Thread.currentThread().getStackTrace()[1].getMethodName());
     }
 
     public void mouseHoverByJS(By locator){
-        System.out.println("In" + "\t" +  Thread.currentThread().getStackTrace()[1].getMethodName());
+        log.debug("In" + "\t" +  Thread.currentThread().getStackTrace()[1].getMethodName());
         String code = "var fireOnThis = arguments[0];"
                 + "var evObj = document.createEvent('MouseEvents');"
                 + "evObj.initEvent( 'mouseover', true, true );"
                 + "fireOnThis.dispatchEvent(evObj);";
         ((JavascriptExecutor) driver).executeScript(code, driver.findElement(locator));
-        System.out.println("Called " + "\t" +  Thread.currentThread().getStackTrace()[1].getMethodName());
+        log.debug("Called " + "\t" +  Thread.currentThread().getStackTrace()[1].getMethodName());
     }
     // Actions actions = new Actions(driver);
     // //

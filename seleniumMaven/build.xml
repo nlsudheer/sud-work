@@ -70,15 +70,10 @@
         <!--TODO: depends="zipReport"-->
         <mail encoding="mime" enableSSL="true" mailhost="smtp.gmail.com" mailport="25" subject="Automation Test Report" ssl="true" user="automation.pramati@gmail.com" password="pramati123">
 
-            <from address="automation.pramati@gmail.com" />
+            <from address="automation@gmail.com" />
             <to address="sudheer@castlighthealth.com" />
             <message>
-                Hello,
-
                 Please find the attachment for the report.
-
-                Thank you,
-                Automation Team
             </message>
             <attachments>
                 <fileset dir="${reports}/zip/" />

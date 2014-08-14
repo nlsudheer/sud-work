@@ -99,9 +99,9 @@ public class Linkedin extends BaseTest {
 						+ browser.getText(By.xpath(element.profilePage_contacts_info_email), true) + ";"
 						+ browser.getText(By.xpath(element.contactPhoneInfo)) + ";"
 						+ browser.getText(By.xpath(element.contactPositionBasicInfo)) + ";" + preInfo + ";" + url); // contactPositionBasicInfo
-				
-				
-				
+
+
+
 			} catch (Exception e) {
 				System.out.println("Element not visible: exception");
 			}
@@ -110,13 +110,13 @@ public class Linkedin extends BaseTest {
 			// break;
 			// }
 
-		
+
 
 		System.out.println("con_email: " + con_email1);
 
 //		FileWriter writer = new FileWriter("outFile.txt", true);
 //		BufferedWriter out = new BufferedWriter(writer);
-		
+
 		File directory_full = new File(new File(".").getAbsolutePath());
 		String csv_full = directory_full.getParentFile() + "\\results\\linkedin_output.csv";
 		try {
@@ -164,17 +164,17 @@ public class Linkedin extends BaseTest {
 
 	}
 
-//	public static void main(String[] args) throws InterruptedException {
-//
-//        LinkedinTest li = new LinkedinTest();
-//		boolean skip = true;
-//
-//		li.login();
-//
+	public static void main(String[] args) throws InterruptedException {
+
+        Linkedin li = new Linkedin();
+		boolean skip = true;
+
+		li.login();
+
 //		li.testcase(skip);
-//
-//		li.signOut();
-//		// li.tearDown();
-//
-//	}
+
+		li.signOut();
+		// li.tearDown();
+
+	}
 }

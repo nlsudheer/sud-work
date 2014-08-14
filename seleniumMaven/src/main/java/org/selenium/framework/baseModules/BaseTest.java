@@ -2,7 +2,6 @@ package org.selenium.framework.baseModules;
 
 
 import org.testng.annotations.AfterClass;
-
 import java.util.Properties;
 
 /**
