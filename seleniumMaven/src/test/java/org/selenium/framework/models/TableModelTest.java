@@ -37,7 +37,7 @@ public class TableModelTest extends BaseTest {
 
     }
 
-    @Test
+    @Test(enabled = false)
     public void testHashBasedTable() throws TableModelException {
         Table<Integer, Integer, String> tableData;
         browser.open(urlToLoad);

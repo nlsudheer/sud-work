@@ -31,7 +31,7 @@ public class GenerateCastLightTestsRun {
         String run = null;
 
         try {
-            String sheetName = "drug"; //pricing preprod dental drug
+            String sheetName = "dental"; //pricing preprod dental drug
             List<String[]> excelData = excel.getRows(file, sheetName);
 
             String[] header = excelData.get(0);

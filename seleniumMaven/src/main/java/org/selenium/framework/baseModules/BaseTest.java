@@ -1,7 +1,8 @@
 package org.selenium.framework.baseModules;
 
 
-import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterSuite;
+
 import java.util.Properties;
 
 /**
@@ -9,15 +10,15 @@ import java.util.Properties;
  */
 public class BaseTest {
 
-    static Properties props = BaseLib.getProperties();
-    public static Browser browser = BaseLib.browser;
+    static Properties props; // =  BaseLib.getProperties();
+    public static Browser browser; // = BaseLib.browser;
+
+
 
     public BaseTest(){
-//        if (browser == null) {
-//            this.browser = new Browser(props.getProperty("browser"));
-//        } else{
-//            this.browser = new Browser();
-//        }
+        props =  BaseLib.getProperties();
+        browser = BaseLib.browser;
+
     }
 
 
@@ -25,10 +26,10 @@ public class BaseTest {
         return props.getProperty(key);
     }
 
-    @AfterClass
+    @AfterSuite
     public void tearDown() {
-        browser.driver.close();
-        browser.driver.quit();
+        if (browser.driver != null)
+            browser.driver.quit();
     }
 
 }

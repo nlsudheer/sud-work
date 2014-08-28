@@ -79,8 +79,52 @@
                 <fileset dir="${reports}/zip/" />
             </attachments>
         </mail>
+    </target>
 
+    <target name="junit-report" depends="archive-junit-report" description="Generate junit test report">
+        <echo> Generating junit report</echo>
+        <junitreport todir="${junit.output.localdir}">
+            <fileset dir="${junit.output.localdir}/">
+                <include name="TEST-*.xml"/>
+            </fileset>
+            <report format="frames" todir="${junit.output.localdir}"/>
+        </junitreport>
 
     </target>
+    <target name="copy-files">
+        <copy file="${src.dir}/procedureMappings.properties" todir="${build.classes.dir}"/>
+        <copy file="${src.dir}/log4j.properties" todir="${build.classes.dir}"/>
+    </target>
+
+    <target name="archive-junit-report" depends="unique-number" description="copy result files to the mentioned dir with file rename">
+        <mkdir dir="${junit.archive.dir}/results/${unique-number}"/>
+        <copy todir="${junit.archive.dir}/results/${unique-number}" flatten = "false">
+            <fileset dir="${junit.output.localdir}/">
+
+                <!--<include name="Foo/**"/>-->
+
+            </fileset>
+            <!--<globmapper from="*" to="*.${unique-number}"/>-->
+
+        </copy>
+        <echo> Archived old junit report</echo>
+    </target>
+    <target name="timestamp">
+        <tstamp>
+            <format property="touch.time" pattern="MM/dd/yyyy hh:mm aa"
+                    offset="-5" unit="hour"/>
+        </tstamp>
+        <echo>The current date is ${touch.time}</echo>
+    </target>
+
+    <target name="unique-number">
+        <tstamp>
+            <format property="unique-number" pattern="yyyyMMdd_hhmmss"
+                    offset="-5" unit="hour"/>
+        </tstamp>
+        <property name="unique-number" value="${unique-number}"/>
+        <echo>The current date is ${unique-number}</echo>
+    </target>
+
 
 </project>

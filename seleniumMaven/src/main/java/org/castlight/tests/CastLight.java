@@ -1,4 +1,5 @@
-package org.selenium.framework;
+package org.castlight.tests;
+
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -6,6 +7,7 @@ import org.selenium.framework.baseModules.Assert;
 import org.selenium.framework.baseModules.BaseTest;
 import org.selenium.framework.pages.CastLightPage;
 import org.selenium.framework.utils.ExcelReader;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.Test;
 
 import java.util.*;
@@ -16,6 +18,21 @@ import java.util.*;
 public class CastLight extends BaseTest {
     public CastLightPage element = new CastLightPage();
     public ExcelReader excel = new ExcelReader();
+
+//    @BeforeSuite
+//        @Parameters( {"frameworkProperties"} )
+//    public void setup(String frameworkProperties){
+//        setPropertyFilePath(frameworkProperties);
+////        System.setProperty("framework.properties", System.getProperty("user.dir") + "/src/main/resources/framework.properties");
+//
+//    }
+
+    @AfterClass
+    public void tearDown() {
+        browser.driver.close();
+        browser.driver.quit();
+    }
+
 
     //    @Test
     public void getProcedureLinks() {
@@ -45,7 +62,7 @@ public class CastLight extends BaseTest {
     @Test
     public void simpleLogin(){
         login(getConfig("cl_username"), getConfig("cl_password"));
-        logout();
+//        logout();
 
     }
 //    @Test

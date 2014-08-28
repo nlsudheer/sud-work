@@ -180,7 +180,7 @@ public class Browser {
             WebDriverWait wait = new WebDriverWait(driver, Long.parseLong(getConfig("wait_timeout")), 10);
             wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
         }
-        log.debug("Called " + "\t" +  Thread.currentThread().getStackTrace()[1].getMethodName());
+        log.info("Called " + "\t" +  Thread.currentThread().getStackTrace()[1].getMethodName());
     }
 
     public void waitTillElementPresent(By locator) {

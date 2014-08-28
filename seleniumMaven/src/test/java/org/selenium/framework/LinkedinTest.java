@@ -7,7 +7,6 @@ import org.openqa.selenium.WebElement;
 import org.selenium.framework.baseModules.BaseTest;
 import org.selenium.framework.pages.LinkedinElementsPage;
 import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import java.io.File;
@@ -20,7 +19,7 @@ public class LinkedinTest extends BaseTest {
 
 
 
-//    @Test
+    @Test(enabled=false)
 //    @Parameters("skip")
 	public void linkedinContacts(boolean skip) throws InterruptedException {
 
@@ -131,7 +130,7 @@ public class LinkedinTest extends BaseTest {
 	}
 
 
-   @Test
+    @Test(enabled=false)
 	public void signOut() {
 		System.out.println("in method: signOut ");
 		browser.waitForElement(By.xpath(element.userNameHover));
@@ -141,12 +140,12 @@ public class LinkedinTest extends BaseTest {
 
 	@AfterClass
 	public void tearDown() {
-		browser.driver.close();
-		browser.driver.quit();
+//		browser.driver.close();
+//		browser.driver.quit();
 	}
 
 
-    @BeforeClass
+//    @BeforeClass
     public void login() {
 		browser.open(getConfig("linkedn_login_url"));
 
