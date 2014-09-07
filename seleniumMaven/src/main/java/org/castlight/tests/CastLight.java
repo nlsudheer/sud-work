@@ -5,7 +5,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.selenium.framework.baseModules.Assert;
 import org.selenium.framework.baseModules.BaseTest;
-import org.selenium.framework.pages.CastLightPage;
+import org.castlight.tests.pages.CastLightPage;
 import org.selenium.framework.utils.ExcelReader;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.Test;

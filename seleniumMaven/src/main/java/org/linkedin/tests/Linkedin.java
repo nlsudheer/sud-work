@@ -1,11 +1,11 @@
-package org.selenium.framework;
+package org.linkedin.tests;
 
 import au.com.bytecode.opencsv.CSVWriter;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.selenium.framework.baseModules.BaseTest;
-import org.selenium.framework.pages.LinkedinElementsPage;
+import org.linkedin.tests.pages.LinkedinElementsPage;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;

@@ -1,4 +1,4 @@
-package org.selenium.framework.pages;
+package org.linkedin.tests.pages;
 
 
 import org.openqa.selenium.By;

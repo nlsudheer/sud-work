@@ -1,4 +1,4 @@
-package org.selenium.framework.pages;
+package org.castlight.tests.pages;
 
 import org.openqa.selenium.By;
 import org.selenium.framework.baseModules.BasePage;
