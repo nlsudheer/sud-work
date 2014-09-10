@@ -1,13 +1,8 @@
-package org.selenium.framework.utils;
+package org.selenium.framework.utils.excel;
 
-import org.apache.poi.poifs.filesystem.POIFSFileSystem;
 import org.apache.poi.ss.usermodel.*;
 import org.selenium.framework.frameworkException.ExcelException;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -20,10 +15,10 @@ import java.util.List;
  * http://poi.apache.org/spreadsheet/converting.html
  * Created by sudheerl on 5/28/14.
  */
-public class ExcelReader {
+public class ExcelReader extends ExcelProcessor{
 
     public HashMap<String, String> getProps(String fileName, String sheetName) {
-        JxlExcelProcessor jxlExcel = new JxlExcelProcessor();
+        ExcelProcessor jxlExcel = new ExcelProcessor();
         return jxlExcel.getProps(fileName, sheetName);
     }
 
@@ -99,19 +94,19 @@ public class ExcelReader {
         return sheetNames;
     }
 
-    public Workbook getExcelObject(String fileName){
-        Workbook wb = null;
-        try{
-            FileInputStream fileInputStream = new FileInputStream(new File(fileName));
-            POIFSFileSystem fsFileSystem = new POIFSFileSystem(fileInputStream);
-            wb = new WorkbookFactory().create(fsFileSystem);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return wb;
-    }
+//    public Workbook getExcelObject(String fileName){
+//        Workbook wb = null;
+//        try{
+//            FileInputStream fileInputStream = new FileInputStream(new File(fileName));
+//            POIFSFileSystem fsFileSystem = new POIFSFileSystem(fileInputStream);
+//            wb = new WorkbookFactory().create(fsFileSystem);
+//        } catch (FileNotFoundException e) {
+//            e.printStackTrace();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//        return wb;
+//    }
 
 
 

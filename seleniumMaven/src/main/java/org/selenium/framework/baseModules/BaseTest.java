@@ -18,7 +18,6 @@ public class BaseTest {
     public BaseTest(){
         props =  BaseLib.getProperties();
         browser = BaseLib.browser;
-
     }
 
 

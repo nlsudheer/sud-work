@@ -1,6 +1,7 @@
 package org.selenium.framework.utils;
 
 import org.selenium.framework.baseModules.BaseTest;
+import org.selenium.framework.utils.excel.ExcelReader;
 import org.testng.annotations.Test;
 
 import java.util.ArrayList;
@@ -14,7 +15,7 @@ import java.util.List;
 public class ExcelReaderTest extends BaseTest {
     private ExcelReader excel = new ExcelReader();
 
-    //    @Test
+//        @Test
     public void getSheetNamesTest(){
         ArrayList<String> sheetNames = new ArrayList<>();
         sheetNames = excel.getSheetNames(getConfig("basedir") + getConfig("excelFileToRead"));

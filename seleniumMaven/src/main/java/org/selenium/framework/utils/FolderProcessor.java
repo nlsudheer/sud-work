@@ -60,10 +60,14 @@ public class FolderProcessor {
         displayDirectoryRecursively(path, null);
     }
 
+    public void displayDirectoryRecursively(String path, String fileTypes){
+        displayDirectoryRecursively(path, fileTypes, false);
+    }
 
-    public void displayDirectoryRecursively(String path, String fileTypes){ //List<String> fileTypes
+    public void displayDirectoryRecursively(String path, String fileTypes,boolean format){ //List<String> fileTypes
         File file = new File(path);
-        dirPrint.append("-");
+        if(format)
+            dirPrint.append("-");
 
 //        FileFilter fileFilter = new RegexFileFilter("^.*[tT]est(-\\d+)?\\.java$");
 //        File[] files = file.listFiles(fileFilter);
@@ -74,12 +78,12 @@ public class FolderProcessor {
         } else {
             for (File aFile : files) {
                 if(aFile.isDirectory()) {
-                    System.out.println( "Dir" + dirPrint.toString() + aFile);
+                    System.out.println( "Dir: " + dirPrint.toString() + aFile);
                     displayDirectoryRecursively(aFile.getAbsolutePath(), fileTypes);
                 } else {
 
                     if(aFile.isFile() && aFile.toString().endsWith(fileTypes))
-                    System.out.println("File: " +  aFile.toString());
+                        System.out.println("File: " +  aFile.toString());
                 }
             }
         }
@@ -100,6 +104,5 @@ public class FolderProcessor {
         }
 
     }
-
 
 }

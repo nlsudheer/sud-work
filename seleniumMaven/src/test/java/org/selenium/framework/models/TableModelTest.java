@@ -14,7 +14,19 @@ public class TableModelTest extends BaseTest {
     TableModel tableModel = new TableModel();
     String urlToLoad = getConfig("testTableModelURL");
 
-//    @Test
+
+    @Test(enabled = true)
+    public void getTableBodyDataTest() throws TableModelException {
+        Table<Integer, Integer, String> tableData;
+        browser.open(urlToLoad);
+        System.out.println("tableData: ");
+        tableData = tableModel.getTableBodyData(By.cssSelector("table#table1>tbody>tr"));
+        System.out.println(tableData);
+        System.out.println("testHashBasedTablem rowKeySet: " + tableData.rowKeySet());
+        System.out.println("testHashBasedTable columnKeySet: "+ tableData.columnKeySet());
+    }
+
+    @Test(enabled = false)
     public void testGetTable() throws TableModelException {
         Table<String, String, String> tableData;
         browser.open(urlToLoad);
@@ -22,7 +34,6 @@ public class TableModelTest extends BaseTest {
 //        System.out.println(tableData);
         System.out.println("testHashBasedTablem rowKeySet: " + tableData.rowKeySet());
         System.out.println("testHashBasedTable columnKeySet: "+ tableData.columnKeySet());
-
     }
 
     @Test(enabled = false)

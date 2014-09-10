@@ -1,7 +1,7 @@
 package org.castlight.tests;
 
 import org.selenium.framework.frameworkException.FrameworkException;
-import org.selenium.framework.utils.ExcelReader;
+import org.selenium.framework.utils.excel.ExcelReader;
 
 import java.util.List;
 
@@ -13,7 +13,7 @@ public class GenerateCastLightTestsRun {
 
     public static void main(String[] args) throws FrameworkException {
         ExcelReader excel = new ExcelReader();
-        String file = "/Users/sudheerl/Pramati/cast_light/Projects/Ventana/testing/cast_light.xls";
+        String file = "/Users/sudheerl/GoogleDrive/workspace/sud-work/seleniumMaven/src/main/java/org/castlight/testData/cast_light.xls";
 
 
         String basePath = null;
@@ -28,7 +28,7 @@ public class GenerateCastLightTestsRun {
         String	host = null;
         String jenkinsRun = null;
         String genTest = null;
-        String run = null;
+        String run;
 
         try {
             String sheetName = "dental"; //pricing preprod dental drug
@@ -43,25 +43,23 @@ public class GenerateCastLightTestsRun {
                 String[] row = excelData.get(ctr);
                 sheet = "tests";
                 basePath = row[1];
-                spreadSheet = basePath + "/" + row[2] + "/testcases/" + row[5];
-                outputDir = basePath + "/" + row[2] + "/" + row[4] + "/" + row[3];
-                templatePath = header[0];
+                spreadSheet = basePath + "/" + row[3];
+                outputDir = basePath + "/" + row[2];
+                templatePath = row[0];
                 testsDir = outputDir;
                 host = "den-qa01-soa01";
 
-                if("YES".equalsIgnoreCase(row[6]) || "YES".equalsIgnoreCase(row[7])) {
+                if("YES".equalsIgnoreCase(row[4]) || "YES".equalsIgnoreCase(row[5])) {
                     run =  run.replace("$spread_sheet",spreadSheet).replace("$sheet", sheet);
                     run = run.replace("$output", outputDir);
                     run = run.replace("$template_path", templatePath);
                     run = run.replace("$tests_dir", testsDir);
                     run = run.replace("$host", host);
 //                    logger.debug(Arrays.toString(row));
-                    System.out.println(run);
+                    System.out.println("\n" + run + "\n");
                     genTest = run.replace("build.xml", "test.xml").replace("run", "gen").replace("NA", "");
-                    System.out.println(genTest);
+                    System.out.println("\n" + genTest + "\n");
                 }
-
-
             }
         } catch (Exception exception) {
             exception.printStackTrace();

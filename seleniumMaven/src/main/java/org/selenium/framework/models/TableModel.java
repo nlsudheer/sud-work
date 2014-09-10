@@ -23,14 +23,15 @@ public class TableModel extends BaseLib {
     private static  Logger logger = Logger.getLogger(TableModel.class);
     int headerSize;
 
+
     public Table<Integer, Integer, String> getTableDataHashBasedTable(By tableHeaderLocator, By tableBodyLocator) {
         Table<Integer, Integer, String> tableData = HashBasedTable.create();
         Table<Integer, Integer, String> tableBodyData = HashBasedTable.create();
-        tableData = getTableHeaderData(tableHeaderLocator);
 
+        tableData = getTableHeaderData(tableHeaderLocator);
         tableBodyData= getTableBodyData(tableBodyLocator);
         tableData.putAll(tableBodyData);
-        logger.debug("DrugAlternativesRequest: "+tableData);
+        logger.debug("tableData: "+tableData);
         return tableData;
     }
 
@@ -63,6 +64,17 @@ public class TableModel extends BaseLib {
 
 
     public Table<String, String, String> getTableData(By tableHeaderLocator, By tableBodyLocator) throws TableModelException {
+        return getTableData(tableHeaderLocator, tableBodyLocator, false);
+    }
+
+    /**
+     * Use when table locators tableHeaderLocator and tableBodyLocator are table>thead>tr>th and table>tbody>tr>td
+     * @param tableHeaderLocator
+     * @param tableBodyLocator
+     * @return Table<String, String, String>
+     * @throws TableModelException
+     */
+    public Table<String, String, String> getTableData(By tableHeaderLocator, By tableBodyLocator, boolean enableException) throws TableModelException {
         Table<String, String, String> tableHeader = HashBasedTable.create();
         Table<String, String, String> tableData = HashBasedTable.create();
 
@@ -77,9 +89,19 @@ public class TableModel extends BaseLib {
         String valueHeader;
 
         if (headerSize > 1) {
-            throw new TableModelException("Header size is greater than 1, check table Header element locator.");
+            String message = "Header size is greater than 1, check table Header element locator.";
+            if (enableException) {
+                throw new TableModelException(message);
+            } else{
+                System.out.println(message);
+            }
         } else if (dataSize == 0) {
-            throw new TableModelException("Data size is 0, check table body element locator.");
+            String message = "Data size is 0, check table body element locator.";
+            if (enableException) {
+                throw new TableModelException(message);
+            } else{
+                System.out.println(message);
+            }
 //        } else if(headerSize != dataSize){
 //            throw new TableModelException("Header size: " +  headerSize + "and data size: " + dataSize + " is not matching check table element locators");
 //        }

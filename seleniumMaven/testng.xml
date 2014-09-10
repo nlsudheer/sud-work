@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Suite" verbose="1" parallel="tests" thread-count="2">
-    <!--<parameter name="frameworkProperties" value="/src/main/resources/framework.properties"/>-->
+    <parameter name="frameworkProperties" value="/src/main/resources/framework.properties"/>
     <parameter name="skip" value="true" />
 
     <!--<test name="Demo">-->
@@ -11,12 +11,12 @@
     <!--</test>-->
 
     <packages>
-        <package name="org.castlight.tests.*"/>
+        <package name="org.isdb.tests.*"/>
     </packages>
 
-    <test name="Parallel">
+    <test name="Parallel" preserve-order="true">
         <classes>
-            <class name="org.castlight.tests.CastLight" />
+            <class name="org.isdb.tests.ExtractSongInfo" />
         </classes>
     </test>
 </suite>

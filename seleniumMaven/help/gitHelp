@@ -1,0 +1,9 @@
+https://help.github.com/articles/error-permission-denied-publickey
+Check that you are connecting to the correct server
+ssh -vT git@github.com
+
+verify your connection by typing
+ssh -T git@github.com
+
+Add ssh key
+ssh-add ~/.ssh/id_sud_rsa
