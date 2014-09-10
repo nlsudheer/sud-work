@@ -1,0 +1,28 @@
+#!/bin/bash
+# **************** Change Variables Here ************
+# http://stackoverflow.com/questions/7536009/search-and-replace-string-on-multiple-files-from-unix-terminal
+# http://forums.devshed.com/unix-help-35/unix-replace-text-files-directory-146179.html
+echo enter directory path
+read DIRPATH
+echo enter word to replace
+read FIND
+echo enter word that replaces
+read REPLACE  
+startdirectory=$DIRPATH
+searchterm=$FIND
+replaceterm=$REPLACE
+# **********************************************************
+
+echo "******************************************"
+echo "* Search and Replace in Files Version .1 *"
+echo "DIRPATH is: " DIRPATH
+echo "******************************************"
+
+        for file in $(grep -l -R $searchterm $startdirectory)
+          do
+           sed -e "s/$searchterm/$replaceterm/g" $file > /tmp/tempfile.tmp
+           mv /tmp/tempfile.tmp $file
+           echo "Modified: " $file
+        done
+
+echo " *** Yay! All Done! *** "
