@@ -58,6 +58,7 @@ public class ExcelProcessor {
             else
                 wb = new HSSFWorkbook(fileInputStream);
 
+            fileInputStream.close();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {

@@ -94,22 +94,6 @@ public class ExcelReader extends ExcelProcessor{
         return sheetNames;
     }
 
-//    public Workbook getExcelObject(String fileName){
-//        Workbook wb = null;
-//        try{
-//            FileInputStream fileInputStream = new FileInputStream(new File(fileName));
-//            POIFSFileSystem fsFileSystem = new POIFSFileSystem(fileInputStream);
-//            wb = new WorkbookFactory().create(fsFileSystem);
-//        } catch (FileNotFoundException e) {
-//            e.printStackTrace();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//        return wb;
-//    }
-
-
-
     private static String getStringCellValue(Cell cell, FormulaEvaluator formulaEvaluator)
             throws ExcelException {
         switch (cell.getCellType()) {
