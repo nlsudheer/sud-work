@@ -1,6 +1,7 @@
 package org.selenium.framework.utils;
 
 import org.selenium.framework.baseModules.BaseTest;
+import org.selenium.framework.frameworkException.ExcelException;
 import org.selenium.framework.utils.excel.ExcelReader;
 import org.testng.annotations.Test;
 
@@ -24,7 +25,7 @@ public class ExcelReaderTest extends BaseTest {
     }
 
     //    @Test
-    public void getRowsTest(){
+    public void getRowsTest() throws ExcelException {
         List<String[]> rows = new ArrayList<>();
         rows = excel.getRows(getConfig("basedir") + getConfig("excelFileToRead"), "defaults");
         System.out.println("rows details are " + rows );

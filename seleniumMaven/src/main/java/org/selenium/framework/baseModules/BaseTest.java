@@ -16,8 +16,8 @@ public class BaseTest {
 
 
     public BaseTest(){
-        props =  BaseLib.getProperties();
-        browser = BaseLib.browser;
+        this.props =  BaseLib.getProperties();
+        this.browser = BaseLib.browser;
     }
 
 

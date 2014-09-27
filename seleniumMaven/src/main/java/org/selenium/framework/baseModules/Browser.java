@@ -1,6 +1,7 @@
 package org.selenium.framework.baseModules;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -23,7 +24,7 @@ import java.util.concurrent.TimeUnit;
 public class Browser {
     TestUtils util = new TestUtils();
     Properties prop = BaseLib.getProperties();
-    public static Logger log = Logger.getLogger(Browser.class);
+    public static Logger logger = Logger.getLogger(Browser.class);
     public WebDriver driver = null;
 
 
@@ -59,7 +60,7 @@ public class Browser {
 //                } catch (MalformedURLException e) {
 //                    e.printStackTrace();
 //                }
-                System.setProperty("webdriver.chrome.driver","/Applications/chromedriver");
+                System.setProperty("webdriver.chrome.driver","/src/main/libs/chrome_driver");
                 driver = new ChromeDriver();
                 break;
             case "iexplorer" :
@@ -72,7 +73,7 @@ public class Browser {
 
 //      Implicit Waits
         driver.manage().timeouts().implicitlyWait(Long.parseLong(getConfig("browser_timeout")), TimeUnit.SECONDS);
-        log.debug("Invoking driver: " + driver.toString());
+        logger.log(Level.DEBUG,  "Invoking driver: " + driver.toString());
         return driver;
     }
 
@@ -180,7 +181,15 @@ public class Browser {
             WebDriverWait wait = new WebDriverWait(driver, Long.parseLong(getConfig("wait_timeout")), 10);
             wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
         }
-        log.info("Called " + "\t" +  Thread.currentThread().getStackTrace()[1].getMethodName());
+        logger.info("Called " + "\t" + Thread.currentThread().getStackTrace()[1].getMethodName());
+    }
+
+    public void waitForElement(WebElement ele) {
+//        if (!isElementPresent(locator)) {
+            WebDriverWait wait = new WebDriverWait(driver, Long.parseLong(getConfig("wait_timeout")), 10);
+            wait.until(ExpectedConditions.visibilityOf(ele));
+//        }
+        logger.info("Called " + "\t" + Thread.currentThread().getStackTrace()[1].getMethodName());
     }
 
     public void waitTillElementPresent(By locator) {
@@ -188,13 +197,19 @@ public class Browser {
             WebDriverWait wait = new WebDriverWait(driver, Long.parseLong(getConfig("wait_timeout")), 10);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(locator));
         }
-        log.debug("Called " + "\t" +  Thread.currentThread().getStackTrace()[1].getMethodName());
+        logger.debug("Called " + "\t" + Thread.currentThread().getStackTrace()[1].getMethodName());
     }
 
     public void clickAndWait(By locator) {
         driver.findElement(locator).click();
         waitForElement(locator);
-        log.debug("Called " + "\t" +  Thread.currentThread().getStackTrace()[1].getMethodName());
+        logger.debug("Called " + "\t" + Thread.currentThread().getStackTrace()[1].getMethodName());
+    }
+
+    public void clickAndWait(WebElement ele) {
+        ele.click();
+        waitForElement(ele);
+        logger.debug("Called " + "\t" + Thread.currentThread().getStackTrace()[1].getMethodName());
     }
 
     public void type(By locator, String text) {
@@ -223,12 +238,12 @@ public class Browser {
             // "elm found in foundElement ");
             try {
                 if (driver.findElement(By.xpath(elm)).isDisplayed()) {
-                    log.debug("elm found in foundElement " + elm);
+                    logger.debug("elm found in foundElement " + elm);
                     return elm;
                 }
             } catch (Exception e) {
 
-                log.debug("elm not found in foundElement " + elm);
+                logger.debug("elm not found in foundElement " + elm);
                 continue;
             }
         }
@@ -236,31 +251,40 @@ public class Browser {
     }
 
     public boolean isElementPresent(By locator) {
-        log.debug("In isElementPresent");
+        logger.log(Level.INFO, "In isElementPresent");
         try {
             return driver.findElement((locator)).isDisplayed();
 
         } catch (NoSuchElementException e) {
-            log.debug("Page element not found "+ locator + "\n"+ e );
+            logger.info("Page element not found " + locator + "\n" + e);
             return false;
         }
     }
 
+
+
     public void mouseHover(By locator){
-        log.debug("In" + "\t" +  Thread.currentThread().getStackTrace()[1].getMethodName());
+        logger.debug("In" + "\t" + Thread.currentThread().getStackTrace()[1].getMethodName());
         Actions builder = new Actions(driver);
         builder.moveToElement(driver.findElement(locator)).perform();
-        log.debug("Called " + "\t" +  Thread.currentThread().getStackTrace()[1].getMethodName());
+        logger.debug("Called " + "\t" + Thread.currentThread().getStackTrace()[1].getMethodName());
+    }
+
+    public void mouseHover(WebElement ele){
+        logger.debug("In" + "\t" + Thread.currentThread().getStackTrace()[1].getMethodName());
+        Actions builder = new Actions(driver);
+        builder.moveToElement(ele).perform();
+        logger.debug("Called " + "\t" + Thread.currentThread().getStackTrace()[1].getMethodName());
     }
 
     public void mouseHoverByJS(By locator){
-        log.debug("In" + "\t" +  Thread.currentThread().getStackTrace()[1].getMethodName());
+        logger.info("In" + "\t" + Thread.currentThread().getStackTrace()[1].getMethodName());
         String code = "var fireOnThis = arguments[0];"
                 + "var evObj = document.createEvent('MouseEvents');"
                 + "evObj.initEvent( 'mouseover', true, true );"
                 + "fireOnThis.dispatchEvent(evObj);";
         ((JavascriptExecutor) driver).executeScript(code, driver.findElement(locator));
-        log.debug("Called " + "\t" +  Thread.currentThread().getStackTrace()[1].getMethodName());
+        logger.info("Called " + "\t" + Thread.currentThread().getStackTrace()[1].getMethodName());
     }
     // Actions actions = new Actions(driver);
     // //

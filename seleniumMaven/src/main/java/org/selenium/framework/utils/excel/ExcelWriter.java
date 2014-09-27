@@ -1,5 +1,6 @@
 package org.selenium.framework.utils.excel;
 
+import org.apache.log4j.Logger;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
@@ -16,10 +17,12 @@ import java.util.Date;
  * Created by sudheerl on 6/18/14.
  */
 public class ExcelWriter extends ExcelProcessor{
+    public static Logger logger = Logger.getLogger(ExcelWriter.class);
 
     public Workbook createSheet(String fileName, String sheetName){
         Workbook wb = getExcelObject(fileName);
         wb.createSheet(sheetName);
+        logger.info("Created the sheet in file " + fileName);
         return wb;
     }
     public void addSheet(String fileName, String sheetName){
@@ -67,6 +70,29 @@ public class ExcelWriter extends ExcelProcessor{
         cell = sheet.getRow(1).getCell(2);
         cell.setCellValue(cell.getNumericCellValue() * 3);
         writeAndCloseExcelFile(fileName, wb);
+        return wb;
+    }
+
+
+    public Workbook updateExcelColumns(Workbook wb, String sheetName, int rowNum, int columnPosition, String cellValue){
+        Sheet sheet  = wb.getSheet(sheetName);
+        Cell cell = null;
+
+        cell = sheet.getRow(rowNum).getCell(columnPosition);
+        cell.setCellValue(cellValue);
+        return wb;
+    }
+
+
+    public Workbook updateExcelColumns(Workbook wb, String sheetName, int columnPosition, String cellValue){
+        Sheet sheet  = wb.getSheet(sheetName);
+        int rowNum = sheet.getPhysicalNumberOfRows();
+        Cell cell = null;
+
+        for(int i = 0; i <= rowNum; i++ ){
+            cell = sheet.getRow(i).getCell(columnPosition);
+            cell.setCellValue(cellValue);
+        }
         return wb;
     }
 

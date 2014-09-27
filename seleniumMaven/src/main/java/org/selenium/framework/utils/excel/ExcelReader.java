@@ -1,12 +1,12 @@
 package org.selenium.framework.utils.excel;
 
+import com.google.common.collect.ArrayListMultimap;
+import com.google.common.collect.Multimap;
+import org.apache.log4j.Logger;
 import org.apache.poi.ss.usermodel.*;
 import org.selenium.framework.frameworkException.ExcelException;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
 
 /**
@@ -16,6 +16,7 @@ import java.util.List;
  * Created by sudheerl on 5/28/14.
  */
 public class ExcelReader extends ExcelProcessor{
+    public static Logger logger = Logger.getLogger(ExcelReader.class);
 
     public HashMap<String, String> getProps(String fileName, String sheetName) {
         ExcelProcessor jxlExcel = new ExcelProcessor();
@@ -41,25 +42,73 @@ public class ExcelReader extends ExcelProcessor{
         return column;
     }
 
-    public List<String[]> getRows(String fileName, String sheetName) {
+    public HashMap<String, Integer> getHeader(Sheet sheet, int rowNum) throws ExcelException {
+        HashMap<String, Integer> header = new HashMap<>();
+        Row row  = sheet.getRow(rowNum);
+        ArrayList exceptions = new ArrayList();
+
+        int cellNum = row.getPhysicalNumberOfCells();
+        Iterator cellIterator = row.cellIterator();
+        int  cellPosition = 0;
+        while(cellIterator.hasNext()){
+            Cell cell = (Cell) cellIterator.next();
+
+            try {
+                String cellValue = row.getCell(cellPosition, Row.RETURN_BLANK_AS_NULL).toString();
+                header.put(cellValue, cellPosition);
+            } catch(Exception e){
+                exceptions.add("Cell value at position\t" + cellPosition + "\t is null or blank ");
+            }
+            cellPosition++;
+        }
+
+        if(exceptions.size() != 0)
+            throw new ExcelException(Arrays.deepToString(exceptions.toArray()));
+
+        return header;
+    }
+
+
+    public Multimap<String, Integer> getRow(Sheet sheet, int rowNum) {
+        Multimap<String, Integer> rowMap = ArrayListMultimap.create();
+        Row row = sheet.getRow(rowNum);
+
+        int cellNum = row.getPhysicalNumberOfCells();
+        Iterator cellIterator = row.cellIterator();
+
+        for (int cellPosition = 0; cellIterator.hasNext(); cellPosition++) {
+            Cell cell = (Cell) cellIterator.next();
+            String cellValue = null;
+            try {
+                cellValue = row.getCell(cellPosition, Row.RETURN_BLANK_AS_NULL).toString();
+                rowMap.put(cellValue, cellPosition);
+            } catch (Exception e) {
+                rowMap.put(null, cellPosition);
+            }
+        }
+        return rowMap;
+    }
+
+
+    public List<String[]> getRows(Workbook workBook, String sheetName) throws ExcelException {
         List<String[]> rows = new ArrayList<String[]>();
         List<String[]> column = new ArrayList<String[]>();
-        Workbook workBook = getExcelObject(fileName);
+
         Sheet sheet = workBook.getSheet(sheetName);
 
         FormulaEvaluator formulaEvaluator = workBook.getCreationHelper().createFormulaEvaluator();
-//        logger.debug(workBook.getSheetIndex(sheet) + " is the index of sheet " + sheet);
-        for (int i = 0; i < workBook.getNumberOfSheets(); i++) {
-//            logger.debug("Sheet " + i + " is " + workBook.getSheetName(i));
-        }
+
+
         if (sheet == null) {
-//            logger.debug(workBook.getSheetIndex(sheet) + " is the index of sheet " + sheet);
+            logger.debug("sheetName: " + sheetName + " not found in the excel file ");
+            throw new ExcelException("sheetName: " + sheetName + " not found in the excel file.");
+
+        } else if (sheet != null) {
+            logger.debug(workBook.getSheetIndex(sheet) + " is the index of sheet " + sheet);
             for (int i = 0; i < workBook.getNumberOfSheets(); i++) {
-//                logger.debug("Sheet " + i + " is " + workBook.getSheetName(i));
+                logger.debug("Sheet " + i + " is " + workBook.getSheetName(i));
             }
         }
-
-
         //Get iterator to all the rows in current sheet
         Iterator<Row> rowIterator = sheet.iterator();
 
@@ -81,6 +130,11 @@ public class ExcelReader extends ExcelProcessor{
             rows.add(row);
         }
         return rows;
+
+    }
+    public List<String[]> getRows(String fileName, String sheetName) throws ExcelException {
+        Workbook workBook = getExcelObject(fileName);
+        return getRows(workBook, sheetName);
     }
 
     public ArrayList getSheetNames(String fileName){
