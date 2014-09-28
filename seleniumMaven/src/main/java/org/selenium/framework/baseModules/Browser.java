@@ -96,6 +96,9 @@ public class Browser {
         return hrefs;
     }
 
+    // Ex By.cssSelector("div#mw-pages a"); where xpath or css locator followed by tag a
+    // By.xpath(//div[@id='mw-pages'] //a)
+    // http://seleniumforum.forumotion.net/t805-urgent-how-to-get-links-under-specific-panel-div-table
     public List<String> getLinksByLocator(By locator) {
         List<String> hrefs = new ArrayList<String>();
         List<WebElement> elements = driver.findElements(locator);

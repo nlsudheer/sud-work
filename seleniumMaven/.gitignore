@@ -1,0 +1,4 @@
+# Created by .gitignore support plugin (hsz.mobi)
+src/main/java/org/selenium/framework/utils/encrypt/encrypt.key
+src/main/java/org/selenium/framework/utils/encrypt/encrypt.properties
+bin/

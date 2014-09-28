@@ -137,6 +137,10 @@ public class ExcelReader extends ExcelProcessor{
         return getRows(workBook, sheetName);
     }
 
+    public Workbook  getWorkbook(String fileName){
+        return getExcelObject(fileName);
+    }
+
     public ArrayList getSheetNames(String fileName){
         ArrayList<String> sheetNames = new ArrayList<String>();
 
